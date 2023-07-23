@@ -1,72 +1,43 @@
 <script lang="ts">
-    import {AppBar} from "@skeletonlabs/skeleton";
     import Mail from "$lib/icons/Mail.svelte";
     import Whatsapp from "$lib/icons/Whatsapp.svelte";
     import StyleGrid from "$lib/components/StyleGrid.svelte";
-    import Carousel from "$lib/components/carousel/Carousel.svelte";
-    import ImageWrapper from "$lib/components/carousel/ImageWrapper.svelte";
 
     let scrollToIndex: (index: number) => void;
 </script>
 
-<div class="md:h-[100vh] bg-surface-700 p-2 space-y-2 flex flex-col items-stretch">
-    <AppBar slotDefault="text-2xl" slotTrail="place-content-end">
-        Cafe Dej
-        <svelte:fragment slot="trail">
+<div class="md:h-[100vh] bg-cafe-surface-900 p-2 space-y-2 flex flex-col items-stretch">
+    <div class="bg-white flex flex-row w-full p-4 justify-between">
+        <div class="text-2xl font-extrabold">
+            Cafe Dej
+        </div>
+        <div class="flex items-center space-x-4">
             <Mail/>
             <Whatsapp/>
-        </svelte:fragment>
-    </AppBar>
+        </div>
+    </div>
     <StyleGrid>
-        <div slot="left-split-left" class="h-full bg-surface-200">
+        <div slot="left-split-left" class="h-full bg-cafe-primary-50">
+                split
+        </div>
+        <div slot="left-split-right" class="h-full bg-cafe-primary-50">
             split
         </div>
-        <div slot="left-split-right" class="h-full bg-surface-200">
-            split
-        </div>
-        <div slot="left-whole" class="h-full bg-surface-200">
+        <div slot="left-whole" class="h-full bg-cafe-primary-50">
             whole
         </div>
-        <div slot="right-whole" class="h-full bg-surface-200">
+        <div slot="right-whole" class="h-full bg-cafe-primary-50">
             whole
         </div>
-        <div slot="right-split" class="h-full bg-surface-200">
+        <div slot="right-split" class="h-full bg-cafe-primary-50">
             split
         </div>
-        <div slot=right-split-upper class="h-full  bg-surface-200">
+        <div slot="right-split-upper" class="h-full bg-cafe-primary-50">
             dual-upper
         </div>
-        <div slot=right-split-lower class="h-full  bg-surface-200">
+        <div slot="right-split-lower" class="h-full bg-cafe-primary-50">
             dual-lower
         </div>
     </StyleGrid>
-    <footer class="card-footer max-h-8">(footer)</footer>
+    <footer class="p-1 pt-0 max-h-8">(footer)</footer>
 </div>
-
-<div class="w-96">
-    Hello
-    <Carousel items="{[
-        {
-            component: ImageWrapper,
-            props:{
-                src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Hauskatze_langhaar.jpg/1200px-Hauskatze_langhaar.jpg',
-                alt: 'cat'
-            }
-        },
-         {
-            component: ImageWrapper,
-            props:{
-                src: 'https://api.ardmediathek.de/image-service/images/urn:ard:image:3dab66faa8140d8b?w=448&ch=9e935de585dfb889',
-                alt: 'cat2'
-            }
-        },
-        {
-            component: ImageWrapper,
-            props:{
-                src: 'https://api.ardmediathek.de/image-service/images/urn:ard:image:3dab66faa8140d8b?w=448&ch=9e935de585dfb889',
-                alt: 'cat3'
-            }
-        }
-    ]}"/>
-</div>
-

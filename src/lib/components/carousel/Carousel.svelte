@@ -8,6 +8,9 @@
     }
 
     export let items: Item[] = []
+    export let defaultAbsoluteNavigation = true;
+    export let defaultRelativeNavigation = true;
+
     export let currentIndex: number
     export let itemCount: number
 
@@ -34,7 +37,7 @@
     }
 </script>
 
-<div class="relative card">
+<div class="relative">
     {#if itemCount > 1}
         <ul class="flex overflow-x-auto gap-6 snap-x snap-mandatory no-scrollbar {$reducedMotion ? '' : 'scroll-smooth'}"
             bind:this={carousel}
@@ -48,34 +51,38 @@
         </ul>
         <nav title="carousel nav">
             <slot name="navigation" { scrollToIndex} {currentIndex} {itemCount}>
-                <div class="absolute h-[100%] w-min left-0 top-0 flex content-center mx-2">
-                    <button title="navigate one left" on:click={() => scrollToIndex(currentIndex - 1)}
-                            disabled="{currentIndex <= 0}">
-                        <svg class="h-8 stroke-primary-600 opacity-60 hover:opacity-100 "
-                             viewBox="3 1 10 15" xmlns="http://www.w3.org/2000/svg" fill-opacity="0">
-                            <path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
-                                  stroke-linecap="round" stroke-miterlimit="10" stroke-width="1"/>
-                        </svg>
-                    </button>
-                </div>
-                <div class="absolute h-[100%] w-min right-0 top-0 flex content-center mx-2">
-                    <button title="navigate one right" on:click={() => scrollToIndex(currentIndex + 1)}
-                            disabled="{currentIndex >= itemCount - 1}">
-                        <svg class="h-8 stroke-primary-600 opacity-60 hover:opacity-100"
-                             viewBox="3 1 10 15" xmlns="http://www.w3.org/2000/svg" fill-opacity="0">
-                            <path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
-                                  stroke-linecap="round" stroke-miterlimit="10" stroke-width="1"/>
-                        </svg>
-                    </button>
-                </div>
-                <div class="absolute bottom-0 w-full flex gap-2 place-content-center my-2">
-                    {#each items as _ , index}
-                        <button title="scroll image {index} into view"
-                                class="w-[32px] h-[6px] rounded-md bg-primary-600 {index === currentIndex ? 'bg-opacity-100' : 'bg-opacity-60  hover:bg-opacity-100'}"
-                                on:click={() => scrollToIndex(index)}>
+                {#if defaultRelativeNavigation}
+                    <div class="absolute h-[100%] w-min left-0 top-0 flex content-center mx-2">
+                        <button title="navigate one left" on:click={() => scrollToIndex(currentIndex - 1)}
+                                disabled="{currentIndex <= 0}">
+                            <svg class="h-8 stroke-cafe-primary-600 opacity-60 hover:opacity-100 "
+                                 viewBox="3 1 10 15" xmlns="http://www.w3.org/2000/svg" fill-opacity="0">
+                                <path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+                                      stroke-linecap="round" stroke-miterlimit="10" stroke-width="1"/>
+                            </svg>
                         </button>
-                    {/each}
-                </div>
+                    </div>
+                    <div class="absolute h-[100%] w-min right-0 top-0 flex content-center mx-2">
+                        <button title="navigate one right" on:click={() => scrollToIndex(currentIndex + 1)}
+                                disabled="{currentIndex >= itemCount - 1}">
+                            <svg class="h-8 stroke-cafe-primary-600 opacity-60 hover:opacity-100"
+                                 viewBox="3 1 10 15" xmlns="http://www.w3.org/2000/svg" fill-opacity="0">
+                                <path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+                                      stroke-linecap="round" stroke-miterlimit="10" stroke-width="1"/>
+                            </svg>
+                        </button>
+                    </div>
+                {/if}
+                {#if defaultAbsoluteNavigation}
+                    <div class="absolute bottom-0 w-full flex gap-2 place-content-center my-2">
+                        {#each items as _ , index}
+                            <button title="scroll image {index} into view"
+                                    class="w-[32px] h-[6px] rounded-md bg-cafe-primary-600 {index === currentIndex ? 'bg-opacity-100' : 'bg-opacity-60  hover:bg-opacity-100'}"
+                                    on:click={() => scrollToIndex(index)}>
+                            </button>
+                        {/each}
+                    </div>
+                {/if}
             </slot>
         </nav>
     {:else if itemCount === 1 }
