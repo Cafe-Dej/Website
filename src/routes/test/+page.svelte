@@ -6,19 +6,19 @@
     let scrollToIndex: (index: number) => void;
 </script>
 
-<div class="md:h-[100vh] bg-cafe-surface-900 p-2 space-y-2 flex flex-col items-stretch">
+<div class="md:h-[100vh] bg-cafe-surface-900 p-3 space-y-3 flex flex-col items-stretch">
     <div class="bg-white flex flex-row w-full p-4 justify-between">
         <div class="text-2xl font-extrabold">
             Cafe Dej
         </div>
-        <div class="flex items-center space-x-4">
+        <div class="flex items-center space-x-4 h-8">
             <Mail/>
             <Whatsapp/>
         </div>
     </div>
     <StyleGrid>
         <div slot="left-split-left" class="h-full bg-cafe-primary-50">
-                split
+            split
         </div>
         <div slot="left-split-right" class="h-full bg-cafe-primary-50">
             split
@@ -39,5 +39,5 @@
             dual-lower
         </div>
     </StyleGrid>
-    <footer class="p-1 pt-0 max-h-8">(footer)</footer>
+    <footer class="p-1 pt-0 max-h-8 text-cafe-primary-400">(footer)</footer>
 </div>
