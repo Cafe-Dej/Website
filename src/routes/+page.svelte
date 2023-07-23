@@ -1,2 +1,33 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+    import type {PageData} from './$types';
+    import type {TableSource} from "@skeletonlabs/skeleton";
+    import {AppBar, AppShell, Table, tableMapperValues} from "@skeletonlabs/skeleton";
+
+    export let data: PageData;
+    let tableSimple: TableSource = {
+        // A list of heading labels.
+        head: ['Ort', 'Datum', 'Ende'],
+        // The data visibly shown in your table body UI.
+        body: data?.present?.map((present) => [
+            present.location,
+            present.start.toLocaleDateString('de', {
+                weekday: 'short',
+                day: 'numeric',
+                month: 'long'
+            }),
+            present.end
+        ])
+    };
+</script>
+
+<AppShell>
+    <svelte:fragment slot="pageHeader">
+        <AppBar slotTrail="place-content-end">
+            Cafe Dej
+            <svelte:fragment slot="trail">social icons</svelte:fragment>
+        </AppBar>
+    </svelte:fragment>
+    <Table source={tableSimple}/>
+    <svelte:fragment slot="footer">Footer</svelte:fragment>
+</AppShell>
+
