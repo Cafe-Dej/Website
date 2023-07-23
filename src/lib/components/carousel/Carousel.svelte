@@ -19,7 +19,7 @@
     let carouselScroll: number
 
     //The amount of items in the carousel
-    $: itemCount = carouselElements?.length ?? 0
+    $: itemCount = items?.length ?? 0
     //The scrolled width divided by the width of a single image (maximum width/image count) is the index of the currently centered image
     $: currentIndex = !carousel || !carouselScroll ? 0 : Math.round(carouselScroll / (carousel?.scrollWidth / itemCount))
 

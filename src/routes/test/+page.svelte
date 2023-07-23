@@ -43,8 +43,9 @@
     <footer class="card-footer max-h-8">(footer)</footer>
 </div>
 
-
-<Carousel items="{[
+<div class="w-96">
+    Hello
+    <Carousel items="{[
         {
             component: ImageWrapper,
             props:{
@@ -67,3 +68,5 @@
             }
         }
     ]}"/>
+</div>
+
