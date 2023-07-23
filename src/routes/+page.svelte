@@ -6,16 +6,15 @@
     export let data: PageData;
     let tableSimple: TableSource = {
         // A list of heading labels.
-        head: ['Ort', 'Datum', 'Ende'],
+        head: ['Ort', 'Datum'],
         // The data visibly shown in your table body UI.
         body: data?.present?.map((present) => [
             present.location,
-            present.start.toLocaleDateString('de', {
+            present.date?.toLocaleDateString('de', {
                 weekday: 'short',
                 day: 'numeric',
                 month: 'long'
-            }),
-            present.end
+            })
         ])
     };
 </script>

@@ -11,7 +11,6 @@ export async function loadPresentInfo() {
     const presence = await client.fetch('*[_type == "locations"]');
     return presence.map((location: any) => ({
         location: location?.location,
-        start: location?.start ? new Date(location.start) : null,
-        end: location?.end ? new Date(location.end) : null
+        date: location?.date ? new Date(location.date) : null,
     }))
 }
