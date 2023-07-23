@@ -1,10 +1,12 @@
-<script>
+<script lang="ts">
     import {AppBar} from "@skeletonlabs/skeleton";
     import Mail from "$lib/icons/Mail.svelte";
     import Whatsapp from "$lib/icons/Whatsapp.svelte";
     import StyleGrid from "$lib/components/StyleGrid.svelte";
     import Carousel from "$lib/components/carousel/Carousel.svelte";
     import ImageWrapper from "$lib/components/carousel/ImageWrapper.svelte";
+
+    let scrollToIndex: (index: number) => void;
 </script>
 
 <div class="md:h-[100vh] bg-surface-700 p-2 space-y-2 flex flex-col items-stretch">
@@ -41,8 +43,8 @@
     <footer class="card-footer max-h-8">(footer)</footer>
 </div>
 
-<div class="w-96 m-8 bg-surface-200">
-    <Carousel items="{[
+
+<Carousel items="{[
         {
             component: ImageWrapper,
             props:{
@@ -65,4 +67,3 @@
             }
         }
     ]}"/>
-</div>
