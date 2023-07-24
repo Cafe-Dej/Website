@@ -37,9 +37,9 @@
     }
 </script>
 
-<div class="relative">
+<div class="h-full relative">
     {#if itemCount > 1}
-        <ul class="flex overflow-x-auto gap-6 snap-x snap-mandatory no-scrollbar {$reducedMotion ? '' : 'scroll-smooth'}"
+        <ul class="h-full flex overflow-x-auto gap-6 snap-x snap-mandatory no-scrollbar {$reducedMotion ? '' : 'scroll-smooth'}"
             bind:this={carousel}
             on:scroll={() => carouselScroll = carousel.scrollLeft}>
             {#each items as {props, component}, index}
