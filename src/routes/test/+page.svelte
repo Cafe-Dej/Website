@@ -28,7 +28,7 @@
     <div class="h-full w-full flex flex-row flex-wrap">
         <div class="h-[70vh] md:h-full  w-full md:w-[45%] gap-3 pb-3 md:pb-0 md:pr-3 grid grid-cols-[2fr_3fr] grid-rows-[3fr_7fr]">
             <div class="h-full bg-white">
-                split
+                image
             </div>
             <div class="h-full bg-[url(/images/chalkboard.webp)] font-[ChalkFace] text-white p-4 flex justify-center items-center">
                 <ul class="w-max">
@@ -41,12 +41,12 @@
                 </ul>
             </div>
             <div class="col-span-2 h-full bg-white">
-                full
+                image scroller
             </div>
         </div>
         <div class="h-[70vh] md:h-full w-full md:w-[55%] gap-3 grid grid-cols-[1fr_1fr] grid-rows-[2fr_1fr_1fr]">
-            <div class="col-span-2 h-full bg-white">
-                full
+            <div class="col-span-2 h-full bg-cafe-primary-50">
+                Presence Dates
             </div>
             {#if data?.specialOffer.length > 0}
                 <div class="row-span-2 h-full bg-white">
@@ -88,25 +88,26 @@
                                     <button class="w-3 h-3 mx-1 rounded-full hover:bg-cafe-surface-900 "
                                             class:bg-cafe-surface-900="{index === currentIndex}"
                                             class:bg-white="{index !== currentIndex}"
-                                            on:click="{() => scrollToIndex(index)}"/>
+                                            on:click="{() => scrollToIndex(index)}">
+                                    </button>
                                 {/each}
                             </div>
                         </svelte:fragment>
                     </Carousel>
                 </div>
-                <div class="h-full bg-white overflow-y-auto overflow-x-hidden prose prose-sm sm:prose-base lg:prose-lg prose-stone p-2">
+                <div class="h-full bg-cafe-primary-50 overflow-y-auto overflow-x-hidden prose prose-sm sm:prose-base lg:prose-lg prose-stone p-2">
                     {@html data?.specialOffer[specialOfferIndex]?.description}
                 </div>
             {:else}
                 <div class="row-span-2 h-full bg-white">
-                    split
+                    image
                 </div>
                 <div class="row-span-2 h-full bg-white">
-                    split-upper
+                    image
                 </div>
             {/if}
             <div class="h-full bg-white">
-                split-lower
+                image
             </div>
         </div>
     </div>
