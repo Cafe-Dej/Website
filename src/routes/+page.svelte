@@ -11,7 +11,7 @@
     let specialOfferIndex: number;
 </script>
 
-<div class="md:h-[100vh] bg-cafe-surface-900 p-3 space-y-3 flex flex-col items-stretch">
+<div class="md:h-screen md:min-h-[450px] bg-cafe-surface-900 p-3 space-y-3 flex flex-col">
     <div class="bg-white flex flex-row w-full p-4 justify-between">
         <div class="text-2xl font-extrabold">
             Cafe Dej
@@ -28,13 +28,13 @@
         <div slot="left-split-right" class="h-full bg-cafe-primary-50">
             split
         </div>
-        <div slot="left-whole" class="h-full bg-cafe-primary-50">
+        <div slot="left-whole" class="h-full  bg-cafe-primary-50">
             whole
         </div>
-        <div slot="right-whole" class="h-full bg-cafe-primary-50">
+        <div slot="right-whole" class="h-full  bg-cafe-primary-50">
             whole
         </div>
-        <div slot="right-split" class="h-full bg-cafe-primary-50">
+        <div slot="right-split" class="flex h-full  bg-cafe-primary-50 ">
             {#if data?.specialOffer.length > 0}
                 <Carousel
                         items="{data.specialOffer.map((item) => ( {
@@ -76,7 +76,7 @@
                 split
             {/if}
         </div>
-        <div slot="right-split-upper" class="h-full bg-white">
+        <div slot="right-split-upper" class="h-full bg-white overflow-hidden">
             {#if data?.specialOffer.length > 0}
                 <div class="prose prose-xl prose-stone p-2">
                     {@html data?.specialOffer[specialOfferIndex]?.description}

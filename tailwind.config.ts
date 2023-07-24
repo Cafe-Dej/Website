@@ -8,6 +8,10 @@ export default {
     ],
     theme: {
         extend: {
+            spacing: {
+                '1/8': '12.5%',
+                '1/10': '10%',
+            },
             colors: {
                 //brown
                 'cafe-primary-50': "rgb(252 237 221)",

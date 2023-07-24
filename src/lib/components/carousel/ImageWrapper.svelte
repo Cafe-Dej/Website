@@ -2,6 +2,6 @@
     export let src: string;
     export let alt: string;
 </script>
-<div class="h-full w-full  overflow-hidden">
-    <img {src} {alt} class="object-cover "/>
-</div>
+
+<img {src} {alt} class="w-full object-cover "/>
+

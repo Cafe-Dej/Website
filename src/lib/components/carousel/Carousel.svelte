@@ -37,18 +37,18 @@
     }
 </script>
 
-<div class="h-full relative">
+<div class="relative h-full w-full">
     {#if itemCount > 1}
-        <ul class="h-full flex overflow-x-auto gap-6 snap-x snap-mandatory no-scrollbar {$reducedMotion ? '' : 'scroll-smooth'}"
+        <ol class="absolute top-0 right-0 bottom-0 left-0 flex overflow-x-auto snap-x snap-mandatory no-scrollbar {$reducedMotion ? '' : 'scroll-smooth'}"
             bind:this={carousel}
             on:scroll={() => carouselScroll = carousel.scrollLeft}>
             {#each items as {props, component}, index}
                 <li bind:this="{carouselElements[index]}"
-                    class="w-full shrink-0 snap-center flex flex-col justify-center">
+                    class="relative h-full w-full snap-center flex grow-0 shrink-0 basis-full">
                     <svelte:component this={component} {...props}/>
                 </li>
             {/each}
-        </ul>
+        </ol>
         <nav title="carousel nav">
             <slot name="navigation" { scrollToIndex} {currentIndex} {itemCount}>
                 {#if defaultRelativeNavigation}
