@@ -28,31 +28,85 @@
     <div class="h-full w-full flex flex-row flex-wrap">
         <div class="h-[70vh] md:h-full  w-full md:w-[45%] gap-3 pb-3 md:pb-0 md:pr-3 grid grid-cols-[2fr_3fr] grid-rows-[3fr_7fr]">
             <div class="h-full bg-white">
+                split
             </div>
-            <div class="h-full bg-white">
+            <div class="h-full bg-[url(/images/chalkboard.webp)] font-[ChalkFace] text-white p-4 flex justify-center items-center">
+                <ul class="w-max">
+                    {#each data.prices as price}
+                        <li class="w-full flex justify-between items-end">
+                            <span class="text-sm md:text-xl">{price.name}</span>
+                            <span class="md:text-2xl pl-8">{price.price} €</span>
+                        </li>
+                    {/each}
+                </ul>
             </div>
             <div class="col-span-2 h-full bg-white">
+                full
             </div>
         </div>
         <div class="h-[70vh] md:h-full w-full md:w-[55%] gap-3 grid grid-cols-[1fr_1fr] grid-rows-[2fr_1fr_1fr]">
             <div class="col-span-2 h-full bg-white">
+                full
             </div>
-            <div class="row-span-2 h-full bg-white">
-                <Carousel
-                        items="{data?.specialOffer?.map((item) => ( {
+            {#if data?.specialOffer.length > 0}
+                <div class="row-span-2 h-full bg-white">
+                    <Carousel
+                            items="{data?.specialOffer?.map((item) => ( {
                                 component: ImageWrapper,
                                 props:{
                                     src: item.image,
                                     alt: item.name
                                 }
                         }))}"
-                        bind:currentIndex={specialOfferIndex}
-                />
-            </div>
+                            bind:currentIndex={specialOfferIndex}
+                    >
+                        <svelte:fragment slot="navigation" let:scrollToIndex let:currentIndex let:itemCount>
+                            <div class="hidden sm:grid md:hidden lg:grid w-max absolute top-0 right-0 grid-cols-2 grid-rows-1 bg-cafe-surface-900 space-x-1.5 pb-3 pl-3">
+                                <button on:click="{() => scrollToIndex(currentIndex - 1)}"
+                                        class="group w-12 bg-white hover:bg-cafe-surface-900 px-3 py-2">
+                                    <svg class="h-full w-full" viewBox="0 0 24 24" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path class="stroke-cafe-surface-900 group-hover:stroke-white stroke-[4]"
+                                              d="m12.814 23.318-11.448-11.33 11.459-11.305"/>
+                                        <path class="stroke-cafe-surface-900 group-hover:stroke-white stroke-[4]"
+                                              d="m2.0021 12.024 21.996-0.047353"/>
+                                    </svg>
+                                </button>
+                                <button on:click="{() => scrollToIndex(currentIndex + 1)}"
+                                        class="group w-12 bg-white hover:bg-cafe-surface-900 px-3 py-2">
+                                    <svg class="h-full w-full rotate-180" viewBox="0 0 24 24" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path class="stroke-cafe-surface-900 group-hover:stroke-white stroke-[4]"
+                                              d="m12.814 23.318-11.448-11.33 11.459-11.305"/>
+                                        <path class="stroke-cafe-surface-900 group-hover:stroke-white stroke-[4]"
+                                              d="m2.0021 12.024 21.996-0.047353"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="block sm:hidden md:block lg:hidden absolute bottom-0 w-full">
+                                {#each [...Array(itemCount).keys()] as index}
+                                    <button class="w-3 h-3 mx-1 rounded-full hover:bg-cafe-surface-900 "
+                                            class:bg-cafe-surface-900="{index === currentIndex}"
+                                            class:bg-white="{index !== currentIndex}"
+                                            on:click="{() => scrollToIndex(index)}"/>
+                                {/each}
+                            </div>
+                        </svelte:fragment>
+                    </Carousel>
+                </div>
+                <div class="h-full bg-white overflow-y-auto overflow-x-hidden prose prose-sm sm:prose-base lg:prose-lg prose-stone p-2">
+                    {@html data?.specialOffer[specialOfferIndex]?.description}
+                </div>
+            {:else}
+                <div class="row-span-2 h-full bg-white">
+                    split
+                </div>
+                <div class="row-span-2 h-full bg-white">
+                    split-upper
+                </div>
+            {/if}
             <div class="h-full bg-white">
-                {specialOfferIndex}
-            </div>
-            <div class="h-full bg-white">
+                split-lower
             </div>
         </div>
     </div>
