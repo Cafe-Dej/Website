@@ -2,6 +2,7 @@
     import type {PageData} from "./$types";
     import ImageWrapper from "$lib/components/carousel/ImageWrapper.svelte";
     import Carousel from "$lib/components/carousel/Carousel.svelte";
+    import DateTable from "$lib/components/DateTable.svelte";
 
     let specialOfferIndex = 0;
     export let data: PageData;
@@ -9,7 +10,7 @@
 
 <div class="h-screen min-h-[70rem] md:min-h-[600px] lg:min-h-[600px]  bg-cafe-surface-900 p-3 space-y-3 flex flex-col justify-stretch">
     <header class="w-full p-4 bg-white flex flex-row  justify-between items-center">
-        <h1 class="text-2xl font-extrabold">
+        <h1 class="text-3xl font-extrabold">
             Cafe Dej
         </h1>
         <div id="socials" class="w-16 lg:w-20 inline-flex justify-between h-5 lg:h-6">
@@ -27,9 +28,9 @@
     </header>
     <div class="grow">
         <div class="h-full gap-3 grid grid-cols-1 grid-rows-[1fr_1fr] md:grid-cols-[45fr_55fr] md:grid-rows-1">
-            <div class=" h-full w-full gap-3 grid grid-cols-[2fr_3fr] grid-rows-[3fr_7fr]">
-                <div class="bg-white">
-                    image
+            <div class="h-full w-full gap-3 grid grid-cols-[2fr_3fr] grid-rows-[3fr_7fr]">
+                <div class="bg-[url(/images/truck-front.webp)] bg-cover bg-center">
+
                 </div>
                 <div class="relative bg-[url(/images/chalkboard.webp)] font-[ChalkFace] text-white overflow-y-auto overflow-x-hidden">
                     <ul class="absolute top-0 bottom-0 left-0 right-0 flex flex-col justify-center items-center p-3 w-full h-full">
@@ -41,13 +42,12 @@
                         {/each}
                     </ul>
                 </div>
-                <div class="col-span-2 bg-white">
-                    image scroller
+                <div class="col-span-2 bg-[url(/images/coffee.webp)] bg-cover bg-center">
                 </div>
             </div>
             <div class="h-full w-full gap-3 grid grid-cols-[1fr_1fr] grid-rows-[2fr_1fr_1fr]">
-                <div class="col-span-2 h-full bg-cafe-primary-50">
-                    Presence Dates
+                <div class="col-span-2 relative h-full bg-cafe-primary-50">
+                    <DateTable dates="{data.present}"/>
                 </div>
                 {#if data?.specialOffer.length > 0}
                     <div class="row-span-2 h-full bg-white">
@@ -109,11 +109,13 @@
                         image
                     </div>
                 {/if}
-                <div class="relative bg-white">
-                    image
+                <div class="relative bg-[url(/images/truck.webp)] bg-cover bg-center">
                 </div>
             </div>
         </div>
     </div>
-    <footer class="p-1 pt-0 max-h-8 text-cafe-primary-400">(footer)</footer>
+    <footer class="p-1 pt-0 max-h-8 text-cafe-primary-400">
+        <a href="/datenschutz" class="pr-4 hover:text-cafe-primary-100">Datenschutzerklärung</a>
+        <a href="/impressum" class="hover:text-cafe-primary-100">Impressum</a>
+    </footer>
 </div>
